@@ -1,0 +1,12 @@
+﻿  floatnum.cpp
+C:\Users\wkram\source\repos\lab1complex\lab1complex\floatnum.cpp(40,13): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+  lab1main.cpp
+C:\Users\wkram\source\repos\lab1complex\lab1complex\lab1main.cpp(11,18): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+C:\Users\wkram\source\repos\lab1complex\lab1complex\lab1main.cpp(12,18): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  saturation.cpp
+  vector.cpp
+C:\Users\wkram\source\repos\lab1complex\lab1complex\vector.h(1,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+  (компиляция исходного файла "vector.cpp")
+  
+  Создание кода...
+  lab1complex.vcxproj -> C:\Users\wkram\source\repos\lab1complex\x64\Debug\lab1complex.exe
