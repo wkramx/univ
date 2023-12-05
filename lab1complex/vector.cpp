@@ -6,8 +6,25 @@ void static error(const char* code) {
 	exit(EXIT_FAILURE);
 }
 
-vector::vector(int s) { //s = 0 in the .h already
-	if (s <= 0) {
+inline int vector::size() {
+	return length;
+}
+
+inline saturation& vector::element(int i) {
+	return vect[i];
+}
+
+int vector::getLength() {
+	return length;
+}
+
+vector::vector() {
+	vect = new saturation[0];
+	length = 0;
+}
+
+vector::vector(int s = 0) {
+	if (s < 0) {
 		error("0");
 	}
 	vect = new saturation[s];
@@ -19,7 +36,15 @@ vector::vector(int s) { //s = 0 in the .h already
 }
 
 vector::~vector() {
-	delete[] vect;
+	if (length != NULL && vect != nullptr) {
+		delete[] vect;
+	}
+}
+
+vector::vector(std::vector<float> a) :vector(a.size()) {
+	for (int i = 0; i < length; i++) {
+		element(i) = a[i];
+	}
 }
 
 void vector::print() {
@@ -30,15 +55,22 @@ void vector::print() {
 
 vector::vector(vector& a) :vector(a.length) {
 	for (int i = 0; i < size(); i++) {
-		element(i) = a.element(i);
+		element(i) = a[i];
 	}
 }
 
-vector::vector(vector&& a) {
+vector::vector(vector&& a) noexcept {
 	vect = a.vect;
 	length = a.length;
-	a.vect = NULL;
+	a.vect = nullptr;
 	a.length = 0;
+}
+
+saturation& vector::operator [] (int i) {
+	if (i < 0 || i + 1 > length) {
+		error("2");
+	}
+	return vect[i];
 }
 
 vector vector::operator + (vector& a) {
@@ -47,7 +79,7 @@ vector vector::operator + (vector& a) {
 	}
 	vector sum(length);
 	for (int i = 0; i < length; i++) {
-		sum.element(i) = element(i) + a.element(i);
+		sum[i] = element(i) + a[i];
 	}
 	return sum;
 }
@@ -58,16 +90,17 @@ vector vector::operator - (vector& a) {
 	}
 	vector dif(length);
 	for (int i = 0; i < length; i++) {
-		dif.element(i) = element(i) - a.element(i);
+		dif[i] = element(i) - a[i];
 	}
 	return dif;
 }
 
-saturation& vector::operator[] (int i) {
-	if (i < 0 || i > length - 1) {
-		error("2");
+void vector::operator = (vector& a) {
+	if (vect != a.vect) {
+		for (int i = 0; i < size(); i++) {
+			element(i) = a[i];
+		}
 	}
-	return *(vect + i);
 }
 
 bool vector::operator == (vector& a) {

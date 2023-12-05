@@ -8,7 +8,7 @@ private:
 	static int prec;
 public:
 	floatnum();
-	floatnum(double);
+	floatnum(float);
 	floatnum(int, int);
 
 	int getWhole();
@@ -18,9 +18,8 @@ public:
 	void print();
 
 	bool operator == (floatnum);
-	friend floatnum operator +(floatnum, floatnum);
-	friend floatnum operator -(floatnum, floatnum);
-	friend floatnum operator *(floatnum, floatnum);
-	friend floatnum operator /(floatnum, floatnum);
-	
+	friend floatnum operator + (floatnum, floatnum);
+	friend floatnum operator - (floatnum, floatnum);
+	friend floatnum operator * (floatnum, floatnum);
+	friend floatnum operator / (floatnum, floatnum);
 };

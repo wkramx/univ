@@ -23,7 +23,7 @@ int floatnum::getFrac() {
 	return frac;
 }
 
-floatnum::floatnum(double f) {
+floatnum::floatnum(float f) {
 	whole = (int)f;
 
 	if (f == 0) {
@@ -32,6 +32,7 @@ floatnum::floatnum(double f) {
 	else {
 		if (f > 0) {
 			f -= whole;
+			flagMinus = 0;
 		}
 		else {
 			f += abs(whole);
@@ -64,7 +65,7 @@ bool floatnum::operator == (floatnum a) {
 	}
 }
 
-floatnum operator +(floatnum num1, floatnum num2) {
+floatnum operator + (floatnum num1, floatnum num2) {
 	
 	int sumWhole = num1.whole + num2.whole;
 	int sumFrac = num1.frac + num2.frac;
@@ -88,10 +89,10 @@ floatnum operator +(floatnum num1, floatnum num2) {
 		sumFrac += floatnum::prec;
 	}
 
-	return sumWhole + (double)sumFrac / floatnum::prec;
+	return sumWhole + (float)sumFrac / floatnum::prec;
 }
 
-floatnum operator -(floatnum num1, floatnum num2) {
+floatnum operator - (floatnum num1, floatnum num2) {
 	int difWhole = num1.whole - num2.whole;
 	int difFrac = num1.frac - num2.frac;
 
@@ -114,58 +115,58 @@ floatnum operator -(floatnum num1, floatnum num2) {
 		difFrac += floatnum::prec;
 	}
 
-	return difWhole + (double)difFrac / floatnum::prec;
+	return difWhole + (float)difFrac / floatnum::prec;
 }
 
-floatnum operator *(floatnum num1, floatnum num2) {
-	double multNum1;
-	double multNum2;
+floatnum operator * (floatnum num1, floatnum num2) {
+	float multNum1;
+	float multNum2;
 
 	if (num1.whole >= 0) {
-		multNum1 = num1.whole + (double)num1.frac / floatnum::prec;
+		multNum1 = num1.whole + (float)num1.frac / floatnum::prec;
 	}
 	if (num1.whole < 0) {
-		multNum1 = num1.whole - (double)num1.frac / floatnum::prec;
+		multNum1 = num1.whole - (float)num1.frac / floatnum::prec;
 	}
 	else if (num1.flagMinus == 1) {
-		multNum1 = -(double)num1.frac / floatnum::prec;
+		multNum1 = -(float)num1.frac / floatnum::prec;
 	}
 	
 	if (num2.whole >= 0) {
-		multNum2 = num2.whole + (double)num2.frac / floatnum::prec;
+		multNum2 = num2.whole + (float)num2.frac / floatnum::prec;
 	}
 	if (num2.whole < 0) {
-		multNum2 = num2.whole - (double)num2.frac / floatnum::prec;
+		multNum2 = num2.whole - (float)num2.frac / floatnum::prec;
 	}
 	else if (num2.flagMinus == 1) {
-		multNum2 = -(double)num2.frac / floatnum::prec;
+		multNum2 = -(float)num2.frac / floatnum::prec;
 	}
 
 	return multNum1 * multNum2;
 }
 
-floatnum operator /(floatnum num1, floatnum num2) {
-	double divideNum1;
-	double divideNum2;
+floatnum operator / (floatnum num1, floatnum num2) {
+	float divideNum1;
+	float divideNum2;
 
 	if (num1.whole >= 0) {
-		divideNum1 = num1.whole + (double)num1.frac / floatnum::prec;
+		divideNum1 = num1.whole + (float)num1.frac / floatnum::prec;
 	}
 	if (num1.whole < 0) {
-		divideNum1 = num1.whole - (double)num1.frac / floatnum::prec;
+		divideNum1 = num1.whole - (float)num1.frac / floatnum::prec;
 	}
 	else if (num1.flagMinus == 1) {
-		divideNum1 = -(double)num1.frac / floatnum::prec;
+		divideNum1 = -(float)num1.frac / floatnum::prec;
 	}
 
 	if (num2.whole >= 0) {
-		divideNum2 = num2.whole + (double)num2.frac / floatnum::prec;
+		divideNum2 = num2.whole + (float)num2.frac / floatnum::prec;
 	}
 	if (num2.whole < 0) {
-		divideNum2 = num2.whole - (double)num2.frac / floatnum::prec;
+		divideNum2 = num2.whole - (float)num2.frac / floatnum::prec;
 	}
 	else if (num2.flagMinus == 1) {
-		divideNum2 = -(double)num2.frac / floatnum::prec;
+		divideNum2 = -(float)num2.frac / floatnum::prec;
 	}
 
 	return divideNum1 / divideNum2;

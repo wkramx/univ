@@ -15,6 +15,9 @@ void saturation::checkFlag() {
 		setFrac(0);
 		flagLimit = 1;
 	}
+	else {
+		flagLimit = 0;
+	}
 }
 
 void saturation::print() {
@@ -25,7 +28,7 @@ void saturation::print() {
 }
 
 saturation::saturation() :floatnum() {
-	flagLimit = 0;
+	checkFlag();
 }
 saturation::saturation(float value) :floatnum(value) {
 	checkFlag();
@@ -50,37 +53,17 @@ bool saturation::operator == (saturation a) {
 }
 
 saturation saturation::operator + (saturation a) {
-	if (flagLimit == 1 || a.flagLimit == 1) {
-		return saturation((floatnum)*this + (floatnum)a, 1);
-	}
-	else {
-		return saturation((floatnum)*this + (floatnum)a, 0);
-	}
+	return saturation((floatnum)*this + (floatnum)a, flagLimit || a.flagLimit);
 }
 
 saturation saturation::operator - (saturation a) {
-	if (flagLimit == 1 || a.flagLimit == 1) {
-		return saturation((floatnum)*this - (floatnum)a, 1);
-	}
-	else {
-		return saturation((floatnum)*this - (floatnum)a, 0);
-	}
+	return saturation((floatnum)*this - (floatnum)a, flagLimit || a.flagLimit);
 }
 
 saturation saturation::operator * (saturation a) {
-	if (flagLimit == 1 || a.flagLimit == 1) {
-		return saturation((floatnum)*this * (floatnum)a, 1);
-	}
-	else {
-		return saturation((floatnum)*this * (floatnum)a, 0);
-	}
+	return saturation((floatnum)*this * (floatnum)a, flagLimit || a.flagLimit);
 }
 
 saturation saturation::operator / (saturation a) {
-	if (flagLimit == 1 || a.flagLimit == 1) {
-		return saturation((floatnum)*this / (floatnum)a, 1);
-	}
-	else {
-		return saturation((floatnum)*this / (floatnum)a, 0);
-	}
+	return saturation((floatnum)*this / (floatnum)a, flagLimit || a.flagLimit);
 }
