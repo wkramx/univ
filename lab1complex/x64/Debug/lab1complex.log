@@ -1,7 +1,0 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: промежуточный каталог (x64\Debug\) содержит файлы, которые используются совместно с другим проектом (lab1complex.vcxproj).  Это может привести к ошибкам очистки и перестроения.
-  vector.cpp
-C:\Users\wkram\source\repos\lab1complex\lab1complex\vector.h(1,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
-  (компиляция исходного файла "vector.cpp")
-  
-C:\Users\wkram\source\repos\lab1complex\lab1complex\vector.cpp(44,52): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-  lab1complex.vcxproj -> C:\Users\wkram\source\repos\lab1complex\x64\Debug\lab.exe
